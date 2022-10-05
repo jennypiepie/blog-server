@@ -8,37 +8,12 @@ const app = new Koa()
 const router = new Router()
 
 const { port, host } = require('./utils')
-const login = require('./router/login')
+const manage = require('./router/manage')
 const web = require('./router/web')
 const nomatch = require('./router/nomatch')
 
 const path = require('path')
 
-// app.use(async (ctx) => {
-//     ctx.body = 'hi Koa'
-// })
-
-//洋葱模型
-// app.use(async (ctx,next) => {
-//     ctx.body = 'hi Koa'
-//     console.log(1);
-//     await next() 
-//     console.log(2);
-// })
-
-// app.use(async (ctx,next) => {
-//     ctx.body = 'hi Koa'
-//     console.log(3);
-//     await next()
-//     console.log(4);
-// })
-
-// app.use(async (ctx,next) => {
-//     ctx.body = 'hi Koa'
-//     console.log(5);
-// })
-
-// //1-3-5-4-2
 
 //路由
 router.get('/', async ctx => {
@@ -47,7 +22,7 @@ router.get('/', async ctx => {
 
 
 //路由拆分
-router.use('/login', login.routes(), login.allowedMethods())
+router.use('/manage', manage.routes(), manage.allowedMethods())
 router.use('/web', web.routes(), web.allowedMethods())
 router.use('/404', nomatch.routes(),nomatch.allowedMethods())
 

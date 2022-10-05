@@ -1,4 +1,6 @@
 const mysql = require('mysql')
+const jwt = require('jsonwebtoken') 
+    
 //开发环境host
 let host = 'http://127.0.0.1'
 //生产环境host
@@ -50,6 +52,16 @@ const queryFn = (sql) => {
     })
 }
 
+const jwtVerify = (token) => {
+    try {
+        //解密token，可以得到username和password
+        jwt.verify(token,'jennypie')
+    } catch (err) {
+        return false
+    }
+    return true
+}
+
 module.exports = {
-    host,port,query,returnMsg,queryFn
+    host,port,query,returnMsg,queryFn,jwtVerify
 }
