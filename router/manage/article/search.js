@@ -8,7 +8,7 @@ router.get('/', async ctx => {
     let token = ctx.request.headers['blog-token']
     //鉴权
     if (!jwtVerify(token)) {
-        ctx.body = returnMsg(2, '查询用户信息失败', 'token过期或该用户不存在')
+        ctx.body = returnMsg(2, 'token过期或该用户不存在', 'token过期或该用户不存在')
         return
     }
     let { id } = ctx.request.body
