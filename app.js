@@ -47,6 +47,7 @@ app.use(router.routes(), router.allowedMethods())
 app.use(static(path.join(__dirname,'static')))   //要写在路由后面，当静态资源和路由相同时，优先匹配路由
 //只要读取静态资源直接进入static目录
 //在页面中读取404.jpg  http://localhost:9000/images/404.jpg
+app.use(static(path.join(__dirname,'router/manage/upload'))) //头像图片资源
 
 app.listen(9000, () => {
     console.log(`Server is running at ${host}:${port}`);

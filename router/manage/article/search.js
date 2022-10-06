@@ -4,14 +4,14 @@ const router = new Router()
 const { returnMsg, queryFn, jwtVerify} = require('../../../utils')
 
 //根据前端传过来的id获取文章
-router.get('/', async ctx => {
+router.get('/:id', async ctx => {
     let token = ctx.request.headers['blog-token']
     //鉴权
     if (!jwtVerify(token)) {
         ctx.body = returnMsg(2, 'token过期或该用户不存在', 'token过期或该用户不存在')
         return
     }
-    let { id } = ctx.request.body
+    let id = ctx.url.split('/').pop()
     // 查询数据库是否有这篇文章
     let sql = `SELECT * FROM article WHERE id=${id}`
     let result = await queryFn(sql)
